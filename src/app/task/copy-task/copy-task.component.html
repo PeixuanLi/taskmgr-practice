@@ -1,0 +1,12 @@
+<form>
+  <h2 md-dialog-title>Copy All Tasks in the List</h2>
+  <div md-dialog-content>
+    <md-select placeholder="Pick the list">
+      <md-option *ngFor="let list of lists" > {{list.name}} </md-option>
+    </md-select>
+  </div>
+  <div md-dialog-actions>
+    <button md-raised-button color="primary" (click) = "onClick()" type="button"> Save </button>
+    <button md-button md-dialog-close>Close</button>
+  </div>
+</form>
