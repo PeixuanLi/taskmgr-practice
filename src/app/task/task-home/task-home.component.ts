@@ -96,4 +96,21 @@ export class TaskHomeComponent implements OnInit {
     const dialogRef = this.dialog.open(NewTaskListComponent,{data:{title:"Edit List Name"}});
     dialogRef.afterClosed().subscribe(result =>  console.log(result));
   }
+
+
+  handleMove(srcData, taskList) {
+    switch (srcData.tag) {
+      case 'task-item': {
+        // this.store$.dispatch(new taskActions.MoveTaskAction({taskId: srcData.data.id, taskListId: taskList.id}));
+        break;
+      }
+      case 'task-list': {
+        // this.store$.dispatch(new listActions.SwapOrderAction({src: srcData.data, target: taskList}));
+        break;
+      }
+      default:
+        break;
+    }
+  }
+
 }
