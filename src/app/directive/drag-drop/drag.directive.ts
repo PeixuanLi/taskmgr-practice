@@ -33,7 +33,7 @@ export class DragDirective {
       this.service.setDragData({tag:this.dragTag, data: this.dragData});
     }
   }
-  @HostListener('dragnd',['$event'])
+  @HostListener('dragend',['$event'])
   onDragEnd(ev:Event){
     if(this.el.nativeElement === ev.target){
       this.rd.addClass(this.el.nativeElement,this.draggedClass);

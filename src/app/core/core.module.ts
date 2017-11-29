@@ -10,6 +10,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { loadSvgResources } from "../utils/svg.util" ;
 import { SharedModule } from "../shared/shared.module";
 import { AppRoutingModule } from '../app-routing.module';
+import { ServicesModule } from '../services/services.module';
 import 'hammerjs';
 
 import 'rxjs/add/observable/from';
@@ -36,11 +37,13 @@ import 'rxjs/add/operator/take';
 import 'rxjs/add/operator/count';
 import 'rxjs/add/operator/do';
 
+
 @NgModule({
   imports: [
     HttpModule,
     SharedModule,
     AppRoutingModule,
+    ServicesModule.forRoot(),
     //动画模块需放在最后
     BrowserAnimationsModule,
   ],

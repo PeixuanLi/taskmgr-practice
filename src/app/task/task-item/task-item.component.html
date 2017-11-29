@@ -11,7 +11,7 @@
     'priority-emergency': item.priority === 1}"
   (click)="itemClicked($event)">
   <md-checkbox class="conpletion-status" [checked] = item.completed (click)="onCheckboxClick($event)"></md-checkbox>
-  <div md-line class="content" [ngClass]="{'completed': item.completed}">
+  <div md-line class="content" [class.completed]="item.completed" >
     <span [md-tooltip] = "item.desc">{{item.desc}}</span>
   </div>
   <div md-line class="bottom-bar">

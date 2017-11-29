@@ -20,6 +20,7 @@ export class TaskHomeComponent implements OnInit {
     {
       id: "BkenST66lb",
       name: "待办",
+      order:1,
       tasks: [
         {
           id: 1,
@@ -52,6 +53,7 @@ export class TaskHomeComponent implements OnInit {
     {
       id: "BkenST66lb",
       name: "待办",
+      order:2,
       tasks: [
         {
           id: 2,
@@ -101,16 +103,26 @@ export class TaskHomeComponent implements OnInit {
   handleMove(srcData, taskList) {
     switch (srcData.tag) {
       case 'task-item': {
-        // this.store$.dispatch(new taskActions.MoveTaskAction({taskId: srcData.data.id, taskListId: taskList.id}));
+        console.log('handle task');
         break;
       }
       case 'task-list': {
-        // this.store$.dispatch(new listActions.SwapOrderAction({src: srcData.data, target: taskList}));
+        console.log('handle list');
+        console.log(JSON.stringify(srcData.data));
+        const srclist = srcData.data;
+        const temp = srclist.order;
+        srclist.order = taskList.order;
+        taskList.order = temp;
+
         break;
       }
       default:
         break;
     }
+  }
+  handleQuickTask(desc:string){
+    console.log(desc);
+
   }
 
 }

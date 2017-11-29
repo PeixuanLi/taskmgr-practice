@@ -9,10 +9,13 @@ import { MdToolbarModule, MdIconModule, MdButtonModule,
   } from '@angular/material';
 import { ComfirmDialogComponent } from './comfirm-dialog/comfirm-dialog.component';
 import { DirectiveModule } from '../directive/directive.module';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
     CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
     MdToolbarModule, 
     MdIconModule, 
     MdButtonModule,
@@ -36,6 +39,8 @@ import { DirectiveModule } from '../directive/directive.module';
   //使用exports 在shared module中方便导入导出, 共享组件
   exports:[
     CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
     MdToolbarModule, 
     MdIconModule, 
     MdButtonModule,
