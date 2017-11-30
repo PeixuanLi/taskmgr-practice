@@ -1,16 +1,17 @@
-<form>
+<form formcontrol [formGroup]="form" (ngSubmit)="onSubmit(form,$event)">
   <md-card>
     <md-card-header>
       <md-card-title> Login: </md-card-title>
     </md-card-header>
     <md-card-content>
       <md-input-container class="full-width" floatPlaceholder="float" >
-        <input mdInput  type="text" placeholder="Email">
+        <input mdInput  type="text" placeholder="Email" formControlName="email" name = "email">
+        <md-error>{{ form.controls['email'].errors | json}}</md-error>
       </md-input-container>
       <md-input-container class="full-width">
-        <input mdInput type="password" placeholder="Password">
+        <input mdInput type="password" placeholder="Password" formControlName="password" name="password">
       </md-input-container>
-      <button md-raised-button type="button">Login</button>
+      <button md-raised-button type="submit">Login</button>
     </md-card-content>
     <md-card-actions class="text-right">
       <p><a routerLink="/register">Create your account</a></p>
