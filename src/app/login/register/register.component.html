@@ -1,27 +1,34 @@
-<form>
-  <md-card>
+<form [formGroup] = "form" (ngSubmit) = "onSubmit(form,$event)">
+  <md-card class="card">
     <md-card-header>
       <md-card-title> Register: </md-card-title>
     </md-card-header>
     <md-card-content>
-      <md-input-container class="full-width" floatPlaceholder="float" >
-        <input mdInput  type="text" placeholder="Email">
+      <md-input-container class="full-width">
+        <input mdInput  type="text" placeholder="Email" formControlName="email">
       </md-input-container>
       <md-input-container class="full-width" >
-        <input mdInput  type="text" placeholder="Name">
+        <input mdInput  type="text" placeholder="Name" formControlName="name">
       </md-input-container>
       <md-input-container class="full-width">
-        <input mdInput type="password" placeholder="Password">
+        <input mdInput type="password" placeholder="Password" formControlName="password">
       </md-input-container>
       <md-input-container class="full-width">
-        <input mdInput type="password" placeholder="Please type your password again">
+        <input mdInput type="password" placeholder="Please type your password again" formControlName="repeat">
       </md-input-container>
-      <md-grid-list cols="6">
+      <app-image-list-select
+        [useSvgIcon] = "true"
+        [cols]="6"
+        [title]="title"
+        [items]="items"
+        formControlName="avatar">
+      </app-image-list-select>
+      <!-- <md-grid-list cols="6">
         <md-grid-tile *ngFor="let item of items" >
           <md-icon class="avatar" [svgIcon] = "item"></md-icon>
         </md-grid-tile>
-      </md-grid-list>
-      <button md-raised-button type="button">Login</button>
+      </md-grid-list> -->
+      <button md-raised-button type="submit">Register</button>
     </md-card-content>
     <md-card-actions class="text-right">
       <p><a href="">Create your account</a></p>

@@ -10,6 +10,7 @@ import { MdToolbarModule, MdIconModule, MdButtonModule,
 import { ComfirmDialogComponent } from './comfirm-dialog/comfirm-dialog.component';
 import { DirectiveModule } from '../directive/directive.module';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { ImageListSelectComponent } from './image-list-select/image-list-select.component';
 
 @NgModule({
   imports: [
@@ -61,11 +62,13 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
     ComfirmDialogComponent,
     MdSidenavModule,
     DirectiveModule,
+    ImageListSelectComponent,
   ],
   entryComponents: [
     ComfirmDialogComponent,
   ],  
   declarations: [
+    ImageListSelectComponent,
     ComfirmDialogComponent,
   ]
 })
