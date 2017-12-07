@@ -5,47 +5,53 @@ import { InviteComponent } from '../invite/invite.component';
 import { ComfirmDialogComponent } from '../../shared/comfirm-dialog/comfirm-dialog.component';
 import { slideToRight } from '../../anim/router.anim';
 import { listAnimation } from '../../anim/list.anim';
+import { ProjectService } from '../../services/project.service';
 
 @Component({
   selector: 'app-project-list',
   templateUrl: './project-list.component.html',
   styleUrls: ['./project-list.component.scss'],
   animations: [slideToRight,listAnimation],
-  changeDetection:ChangeDetectionStrategy.OnPush,
+  // changeDetection:ChangeDetectionStrategy.OnPush,
 })
 export class ProjectListComponent implements OnInit {
 @HostBinding('@routeAnim') state;
-
-  projects =[
-    {
-      "id" : 1,
-      "name": "测试1",
-      "desc": "项目描述",
-      "coverImage": "assets/img/covers/0.jpg",
-    }, 
-    {
-      "id" : 2,
-      "name": "测试2",
-      "desc": "项目描述",
-      "coverImage": "assets/img/covers/2.jpg",
-    }, 
-    {
-      "id" : 3,
-      "name": "测试3",
-      "desc": "项目描述",
-      "coverImage": "assets/img/covers/3.jpg",
-    }, 
+  projects=[];
+  // projects =[
+  //   {
+  //     "id" : 1,
+  //     "name": "测试1",
+  //     "desc": "项目描述",
+  //     "coverImage": "assets/img/covers/0.jpg",
+  //   }, 
+  //   {
+  //     "id" : 2,
+  //     "name": "测试2",
+  //     "desc": "项目描述",
+  //     "coverImage": "assets/img/covers/2.jpg",
+  //   }, 
+  //   {
+  //     "id" : 3,
+  //     "name": "测试3",
+  //     "desc": "项目描述",
+  //     "coverImage": "assets/img/covers/3.jpg",
+  //   }, 
      
-  ];
-  constructor(private dialog:MdDialog, private cd: ChangeDetectorRef) { }
+  // ];
+  constructor(private dialog:MdDialog, private cd: ChangeDetectorRef, private service$: ProjectService) { }
 
   ngOnInit() {
+    this.service$.get("37489e0c-df34-c261-71c4-ce75357e3035").subscribe(projects => {
+      this.projects = projects;
+      console.log(JSON.stringify(this.projects));
+    });
+    
   }
   openNewProjectDialog(){
     const dialogRef = this.dialog.open(NewProjectComponent,{data:{title:"New Project"}});
     dialogRef.afterClosed().subscribe(result => {
       console.log(result);
-      this.projects = [... this.projects, {"id" : 4, "name": "测试4", "desc": "项目描述","coverImage": "assets/img/covers/0.jpg",
+      this.projects = [... this.projects, {"id" : 4, "name": "测试4", "desc": "项目描述","coverImg": "assets/img/covers/0.jpg",
       }];
       this.cd.markForCheck();
 
