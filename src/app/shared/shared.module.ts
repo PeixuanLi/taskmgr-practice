@@ -6,11 +6,13 @@ import { MdToolbarModule, MdIconModule, MdButtonModule,
    MdMenuModule, MdCheckboxModule, MdTooltipModule,
    MdRadioModule, MdNativeDateModule, MdDatepickerModule, MdSelectModule,
    MdSidenavModule,
+   MdButtonToggleModule,
   } from '@angular/material';
 import { ComfirmDialogComponent } from './comfirm-dialog/comfirm-dialog.component';
 import { DirectiveModule } from '../directive/directive.module';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { ImageListSelectComponent } from './image-list-select/image-list-select.component';
+import { AgeInputComponent } from './age-input/age-input.component';
 
 @NgModule({
   imports: [
@@ -35,6 +37,7 @@ import { ImageListSelectComponent } from './image-list-select/image-list-select.
     MdRadioModule,
     MdSelectModule,
     MdSidenavModule,
+    MdButtonToggleModule,
     DirectiveModule,
   ],
   //使用exports 在shared module中方便导入导出, 共享组件
@@ -61,14 +64,17 @@ import { ImageListSelectComponent } from './image-list-select/image-list-select.
     MdSelectModule,
     ComfirmDialogComponent,
     MdSidenavModule,
+    MdButtonToggleModule,
     DirectiveModule,
     ImageListSelectComponent,
+    AgeInputComponent,
   ],
   entryComponents: [
     ComfirmDialogComponent,
   ],  
   declarations: [
     ImageListSelectComponent,
+    AgeInputComponent,
     ComfirmDialogComponent,
   ]
 })

@@ -12,7 +12,7 @@ import { SharedModule } from "../shared/shared.module";
 import { AppRoutingModule } from '../app-routing.module';
 import { ServicesModule } from '../services/services.module';
 import 'hammerjs';
-
+import '../utils/debug.util';
 import 'rxjs/add/observable/from';
 import 'rxjs/add/observable/concat';
 import 'rxjs/add/observable/zip';
