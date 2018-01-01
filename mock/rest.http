@@ -1,2 +1,35 @@
 
 GET http://localhost:3000/projects?members_like=37489e0c-df34-c261-71c4-ce75357e3035
+
+###
+GET http://localhost:3000/tasklists
+###
+POST  http://localhost:3000/tasklists
+Content-Type: application/json
+
+{
+    "name": "已完成",
+    "projectId": "Sk2HaTagb",
+    "order": 5,
+    "id": "SkG3Ba6Tgd"
+}
+###
+PUT   http://localhost:3000/tasklists/SkG3Ba6Tgd
+Content-Type: application/json
+
+{
+    "name": "已完成",
+    "projectId": "Sk2HaTagb",
+    "order": 6,
+    "id": "SkG3Ba6Tgd"
+}
+###
+PATCH   http://localhost:3000/tasklists/SkG3Ba6Tgd
+Content-Type: application/json
+
+{
+    "order": 7
+}
+
+###
+DELETE  http://localhost:3000/tasklists/SkG3Ba6Tgd

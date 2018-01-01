@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { QuoteService } from '../../services/quote.service';
+import { Observable } from 'rxjs/Observable';
+import { Quote } from '../../domain/quote';
 
 @Component({
   selector: 'app-login',
@@ -8,7 +11,14 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 })
 export class LoginComponent implements OnInit {
   form:FormGroup;
-  constructor() { }
+  quote;
+  quote$: Observable<Quote>;
+  constructor(private quotes: QuoteService) { 
+    this.quote$ = quotes.getQuote();
+    // .subscribe(quote => {
+    //   this.quote = quote;
+    // });
+  }
 
   ngOnInit() {
     this.form = new FormGroup({
@@ -18,8 +28,6 @@ export class LoginComponent implements OnInit {
   }
   onSubmit({value,valid}, ev: Event){
     ev.preventDefault();
-    console.log(JSON.stringify(value));
-    console.log(valid);
   }
   validate(c :FormControl) :{ [key:string]:any}{
     if(!c.value){

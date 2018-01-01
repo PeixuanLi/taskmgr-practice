@@ -24,7 +24,6 @@ export class ProjectService{
     }
     //update
     update(project : Project): Observable<Project>{
-        project.id = null;
         const url = `${this.config.url}/${this.domain}/${project.id}`;
         const toUpdate = {
             name : project.name,
@@ -37,7 +36,7 @@ export class ProjectService{
     }
     //del
     del(project : Project): Observable<Project>{
-        const delTask$ = Observable.from(project.tasklists)
+        const delTask$ = Observable.from(project.tasklists? project.tasklists : [])
             .mergeMap(listId => this.http.delete(`${this.config.url}/tasklists/${listId}`))
             .count();
         return delTask$.switchMap(_ => this.http.delete(`${this.config.url}/${this.domain}/${project.id}`))
@@ -45,9 +44,7 @@ export class ProjectService{
     }
      //get
      get(userId:string): Observable<Project[]>{
-        this.config.url = 'http://localhost:3000';
         const url = `${this.config.url}/${this.domain}`;
-        console.log(url);
         return this.http
             .get(url, {params:{'members_like':userId}, headers: this.headers})
             .map(res => res.json() as Project[]);

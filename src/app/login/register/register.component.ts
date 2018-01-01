@@ -31,7 +31,7 @@ export class RegisterComponent implements OnInit {
     if(!valid){
       return;
     }
-    console.log(value);
+    // console.log(value);
   }
 
 }

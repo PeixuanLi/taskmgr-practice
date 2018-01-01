@@ -1,5 +1,7 @@
 import { Component, OnInit, Inject, ChangeDetectionStrategy } from '@angular/core';
 import { MdDialogRef, MD_DIALOG_DATA } from '@angular/material';
+import { FormGroup, FormBuilder } from '@angular/forms';
+import { Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-new-project',
@@ -8,17 +10,46 @@ import { MdDialogRef, MD_DIALOG_DATA } from '@angular/material';
   changeDetection:ChangeDetectionStrategy.OnPush,
 })
 export class NewProjectComponent implements OnInit {
-  title : string = "";
+  title :string;
+  form: FormGroup;
+  coverImages:string[];
+  imageTitle = "";
+
   constructor(
     @Inject(MD_DIALOG_DATA) private data,
     private mdDialogRef : MdDialogRef<NewProjectComponent>,
+    private fb:FormBuilder,
   ) { }
 
   ngOnInit() {
-    console.log("dialog opened:"+JSON.stringify(this.data));
-    this.title = this.data.title;
+    this.coverImages = this.data.thumbnails;
+    if(this.data.project){
+      this.form = this.fb.group({
+        name:[this.data.project.name,Validators.required],
+        desc:[this.data.project.data],
+        coverImg:[this.data.project.coverImg]
+      });
+      this.title = "Edit Project";
+    } else{
+      this.form = this.fb.group({
+        name:['',Validators.required],
+        desc:[''],
+        coverImg:[this.data.img]
+      });
+      this.title = "New Project";
+    }
+    
+    // console.log("dialog opened:"+JSON.stringify(this.data));
+    // this.title = this.data.title;
   }
-  onClick(){
-    this.mdDialogRef.close(`Message recieved!`);
+  onSubmit({value,valid}, env:Event){
+    console.log("message sent");
+    env.preventDefault();
+    if(!valid){
+      return;
+    }
+   
+    this.mdDialogRef.close(value);
+    
   }
 }

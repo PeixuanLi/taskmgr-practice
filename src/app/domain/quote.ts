@@ -1,7 +1,7 @@
 export interface Quote {
     id?: string;
-    cn: string;
     en: string;
+    from: string;
     pic: string;
   }
   
