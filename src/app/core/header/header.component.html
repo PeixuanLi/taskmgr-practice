@@ -1,9 +1,10 @@
 <md-toolbar color="primary">
-  <button md-button (click) = "openSidebar()">
+  <button md-button (click) = "openSidebar()" *ngIf="(auth$ | async)?.user">
     <md-icon>menu</md-icon>
   </button>
   <md-icon></md-icon>
   <span>Cooperation platform</span>
   <span class="fill-remaining-space"></span>
   <md-slide-toggle (change) = "onChange($event.checked)">Dark Theme</md-slide-toggle>
+  <span><a md-button *ngIf="(auth$ | async)?.user" (click)="logout()">退出</a></span>
 </md-toolbar>

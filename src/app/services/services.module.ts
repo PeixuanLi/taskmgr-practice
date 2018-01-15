@@ -5,6 +5,9 @@ import { ProjectService } from './project.service';
 import { QuoteService } from './quote.service';
 import { TaskListService } from './task-list.service';
 import { TaskService } from './task.service';
+import { userService } from './user.service';
+import { AuthService } from './auth.service';
+import { AuthGuardService } from './auth-guard.service';
 export {
   ProjectService,
 }
@@ -19,6 +22,9 @@ export class ServicesModule {
         ProjectService,
         TaskListService,
         TaskService,
+        userService,
+        AuthService,
+        AuthGuardService,
       ]
     }
   }

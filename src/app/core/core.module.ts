@@ -11,6 +11,9 @@ import { loadSvgResources } from "../utils/svg.util" ;
 import { SharedModule } from "../shared/shared.module";
 import { AppRoutingModule } from '../app-routing.module';
 import { ServicesModule } from '../services/services.module';
+import { AppStoreModule } from '../reducers';
+import { AppEffectsModule } from '../effects';
+
 import 'hammerjs';
 import '../utils/debug.util';
 import 'rxjs/add/observable/from';
@@ -40,6 +43,7 @@ import 'rxjs/add/operator/count';
 import 'rxjs/add/operator/do';
 
 
+
 @NgModule({
   imports: [
     HttpModule,
@@ -48,6 +52,8 @@ import 'rxjs/add/operator/do';
     ServicesModule.forRoot(),
     //动画模块需放在最后
     BrowserAnimationsModule,
+    AppStoreModule,
+    AppEffectsModule
   ],
   declarations: [
     HeaderComponent,
