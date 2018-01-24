@@ -13,18 +13,22 @@ export class TaskItemComponent implements OnInit {
   @Input() item;
   @Input() avatar;
   @Output() taskClick = new EventEmitter<void>();
+  @Output() taskComplete = new EventEmitter<void>();
   widerPriority ='in';
   constructor() { }
 
   ngOnInit() {
     this.avatar = this.item.owner? this.item.owner.avatar: "unassigned";
   }
-  onItemClick(){
-    this.taskClick.emit();
-  }
   onCheckboxClick(ev:Event){
     ev.stopPropagation();
+    this.taskComplete.emit();
   }
+  itemClicked(ev: Event) {
+    ev.preventDefault();
+    this.taskClick.emit();
+  }
+ 
 
   //鼠标进入动画
   @HostListener('mouseenter')

@@ -1,8 +1,9 @@
 import { Injectable, Inject } from "@angular/core";
 import { Http, Headers } from "@angular/http";
-import { Project } from "../domain/index";
+import { Project, User } from "../domain/index";
 import { Observable } from "rxjs/Observable";
-
+import * as _ from 'lodash';
+  
 
 @Injectable()
 export class ProjectService{
@@ -49,4 +50,28 @@ export class ProjectService{
             .get(url, {params:{'members_like':userId}, headers: this.headers})
             .map(res => res.json() as Project[]);
     }
+    updateTaskLists(project: Project): Observable<Project> {
+        const url = `${this.config.url}/${this.domain}/${project.id}`;
+        const toUpdate = {
+            tasklists: project.tasklists
+          };
+        return this.http
+            .patch(url, JSON.stringify(toUpdate), {headers: this.headers})
+            .map(res => res.json() as Project);
+    }
+    inviteMembers(projectId : string, members : User[]): any {
+        const url = `${this.config.url}/${this.domain}/${projectId}`;
+        console.log(url);
+        return this.http
+            .get(url)
+            .map(r => r.json())
+            .switchMap(project =>{
+                const old_ids = project.members;
+                const invite_ids = members.map(member => member.id)
+                const new_ids = _.union(old_ids,invite_ids);
+                return this.http.patch(url,JSON.stringify({members:new_ids}),{headers: this.headers})
+            })
+            .map(res =>res.json());
+        
+      }
 }

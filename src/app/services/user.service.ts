@@ -6,7 +6,7 @@ import { Observable } from "rxjs/Observable";
 
 
 @Injectable()
-export class userService{
+export class UserService{
     private domain = 'users';
     private headers = new Headers({
         'content-type':'application/json'
@@ -36,11 +36,10 @@ export class userService{
 
     addProjectRef(user: User,projectId: string): Observable<User>{
         const url = `${this.config.url}/${this.domain}/${user.id}`;
-
         const projectIds = user.projectIds? user.projectIds:[];
         if(projectIds.indexOf(projectId) === -1){
             return this.http
-                .patch(url,{'projectIds':[...user.projectIds, projectId]},{headers: this.headers})
+                .patch(url,{'projectIds':[...projectIds, projectId]},{headers: this.headers})
                 .map(res =>res.json() as User);
         }
         return Observable.of(user);
@@ -61,7 +60,7 @@ export class userService{
 
     batchUpdateProjectRef(project:Project):Observable<User[]>{
         const projectId = project.id;
-        const memberIds = project.member;
+        const memberIds = project.members;
         const url = `${this.config.url}/${this.domain}`;
         //批量更改 projectId 
         //选出对应project 的 user, 将现在的 projectId 更新至 user.projectId

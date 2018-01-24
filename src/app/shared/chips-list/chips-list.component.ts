@@ -2,7 +2,7 @@ import { Component, OnInit, ChangeDetectionStrategy, forwardRef, OnDestroy, View
 import { NG_VALUE_ACCESSOR, NG_VALIDATORS, ControlValueAccessor, FormControl, FormBuilder,FormGroup  } from '@angular/forms';
 import { User } from '../../domain/index';
 import { Observable } from 'rxjs/Observable';
-import { userService } from '../../services/user.service';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-chips-list',
@@ -33,7 +33,7 @@ export class ChipsListComponent implements OnInit,  ControlValueAccessor, OnInit
   form: FormGroup;
   items: User[];
   memberResults$:Observable<User[]>;
-  constructor(private fb: FormBuilder, private service: userService) {
+  constructor(private fb: FormBuilder, private service: UserService) {
     this.items = [];
   }
 

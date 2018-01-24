@@ -4,5 +4,5 @@ export interface Project {
     desc ?: string;
     coverImg : string;
     tasklists ?: string[];
-    member : string[];
+    members : string[];
 }

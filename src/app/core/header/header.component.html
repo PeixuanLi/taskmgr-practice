@@ -6,5 +6,6 @@
   <span>Cooperation platform</span>
   <span class="fill-remaining-space"></span>
   <md-slide-toggle (change) = "onChange($event.checked)">Dark Theme</md-slide-toggle>
-  <span><a md-button *ngIf="(auth$ | async)?.user" (click)="logout()">退出</a></span>
+  <span><a md-button *ngIf="(auth$ | async)?.user" (click)="logout()">Log Out</a></span>
+  <!-- <span>{{(auth$ | async)?.user)}}</span> -->
 </md-toolbar>

@@ -1,25 +1,32 @@
 <md-list dense>
   <h3 md-subheader>Projects</h3>
-  <md-list-item [routerLink]="['/project']" (click)="onNavClick()">
+  <md-list-item [routerLink]="['/projects']" (click)="onNavClick()">
       <md-icon md-list-icon svgIcon="projects"></md-icon>
       <span md-line>Projects Home Page</span>
       <span md-line md-subheader>View all your projects here</span>
   </md-list-item>
+  <md-list-item *ngFor="let prj of projects$ | async" (click)="onPrjClick(prj,$event)">
+    <md-icon md-list-icon svgIcon="project"></md-icon>
+    <a md-line>
+      {{prj.name}}
+    </a>
+    <span md-line md-subheader> {{prj.desc}} </span>
+  </md-list-item>
   <h3 md-subheader>Calendar</h3>
-  <md-list-item [routerLink]="['/tasklists']" (click)="onNavClick()">
+  <md-list-item  >
       <span  md-line>Calendar Home Page</span>
   </md-list-item>
-  <md-list-item>
+  <md-list-item [routerLink]="['/mycal/month']" (click)="onNavClick()">
       <md-icon md-list-icon svgIcon="month"></md-icon>
       <span md-line>Month</span>
       <span md-line md-subheader>View all your task by month</span>
   </md-list-item>
-  <md-list-item>
+  <md-list-item [routerLink]="['/mycal/week']" (click)="onNavClick()"> 
       <md-icon md-list-icon svgIcon="week"></md-icon>
       <span md-line>Week</span>
       <span md-line md-subheader>View all your task by week</span>
   </md-list-item>
-  <md-list-item>
+  <md-list-item [routerLink]="['/mycal/day']" (click)="onNavClick()">
       <md-icon md-list-icon svgIcon="{{today}}"></md-icon>
       <span md-line>Day</span>
       <span md-line md-subheader>View all your task by day</span>

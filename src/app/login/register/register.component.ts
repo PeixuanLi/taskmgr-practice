@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder} from '@angular/forms';
+import { Store } from '@ngrx/store';
+import * as fromRoot from '../../reducers';
+import * as actions from '../../actions/auth.action';
 
 @Component({
   selector: 'app-register',
@@ -11,7 +14,8 @@ export class RegisterComponent implements OnInit {
   form : FormGroup;
   private readonly avatarName = 'avatars';
   
-  constructor(private fb:FormBuilder) { }
+  constructor(private fb:FormBuilder,
+    private store$: Store<fromRoot.State>) { }
 
   ngOnInit() {
     const img = `${this.avatarName}:svg-${(Math.random() * 16).toFixed()}`;
@@ -31,7 +35,16 @@ export class RegisterComponent implements OnInit {
     if(!valid){
       return;
     }
-    // console.log(value);
+    this.store$.dispatch(
+      new actions.RegisterAction({
+        password: value.password,
+        name: value.name,
+        email: value.email,
+        avatar: value.avatar,
+        identity: value.identity,
+        address: value.address,
+        dateOfBirth: value.dateOfBirth
+      }));
   }
 
 }

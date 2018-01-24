@@ -34,8 +34,8 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.form = new FormGroup({
-      email : new FormControl('wpcfan@163.com',Validators.compose([Validators.email, Validators.required])),
-      password : new FormControl('wp123456',Validators.required)
+      email : new FormControl('user@domain',Validators.compose([Validators.email, Validators.required])),
+      password : new FormControl('123',Validators.required)
     });
     this.store$.dispatch({type: actions.ActionTypes.QUOTE});
   }

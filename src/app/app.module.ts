@@ -3,8 +3,8 @@ import { NgModule } from '@angular/core';
 import { CoreModule } from './core/core.module';
 import { AppComponent } from './app.component';
 import { LoginModule } from './login/login.module';
-import { ProjectModule } from './project/project.module';
-import { TaskModule } from './task/task.module';
+// import { ProjectModule } from './project/project.module';
+// import { TaskModule } from './task/task.module';
 import { SharedModule } from './shared/shared.module';
 
 
@@ -17,8 +17,9 @@ import { SharedModule } from './shared/shared.module';
     LoginModule,
     //在跟模块中加载一次, 其他时候不用加载了, 
     //可将文件名写为index, 不然要写为'import ... from './core/core.module';'
-    ProjectModule,
-    TaskModule,
+    //使用懒加载后不需要了
+    // ProjectModule,
+    // TaskModule,
     SharedModule,
     CoreModule,
   ],

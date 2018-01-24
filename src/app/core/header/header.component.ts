@@ -26,6 +26,11 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit() {
+    // this.auth$.subscribe(auth => {
+    //   if(auth.user){
+    //     console.log(auth.user.name)
+    //   }
+    // });
   }
 
   openSidebar(){

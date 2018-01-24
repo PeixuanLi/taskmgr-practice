@@ -16,6 +16,7 @@ export class ProjectItemComponent implements OnInit {
   @Output() onInvite = new EventEmitter<void>();
   @Output() onEdit = new EventEmitter<void>();
   @Output() onDel = new EventEmitter<void>();
+  @Output() onSelected= new EventEmitter<void>();
 
   //绑定动画元素
   @HostBinding('@card') cardState = 'out';
@@ -36,13 +37,23 @@ export class ProjectItemComponent implements OnInit {
     this.cardState = 'out';
   }
 
-  onInviteClick(){
+  onInviteClick(event:Event){
+    // event.preventDefault();
+    event.stopPropagation();
     this.onInvite.emit();
   }
-  onEditClick(){
+  onEditClick(event:Event){
+    event.preventDefault();
+    event.stopPropagation();
     this.onEdit.emit();
   }
-  onDelClick(){
+  onDelClick(event:Event){
+    event.preventDefault();
+    event.stopPropagation();
     this.onDel.emit();
+  }
+  onClick(event:Event){
+    event.preventDefault();
+    this.onSelected.emit();
   }
 }

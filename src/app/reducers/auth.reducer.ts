@@ -9,11 +9,11 @@ export function reducer(state: Auth = initialState, action: actions.Actions): Au
     case actions.ActionTypes.REGISTER_SUCCESS: {
       const auth = <Auth>action.payload;
     //   console.log("LOGIN_SUCCESS",auth);
-      return auth;
-    //   {
-    //     token: auth.token,
-    //     userId: auth.user.id
-    //   };
+      // return auth;
+      return{
+        token: auth.token,
+        userId: auth.user.id
+      };
     }
     case actions.ActionTypes.LOGIN_FAIL:
     case actions.ActionTypes.REGISTER_FAIL: {

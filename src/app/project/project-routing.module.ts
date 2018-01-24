@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import {ProjectListComponent} from './project-list/project-list.component';
 
 const routes: Routes = [
-    { path: 'projects', component: ProjectListComponent }
+    { path: '', component: ProjectListComponent }
 ];
 
 @NgModule({

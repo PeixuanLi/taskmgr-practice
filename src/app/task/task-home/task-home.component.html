@@ -10,22 +10,24 @@
     [dragData]="list"
     (dropped)="handleMove($event, list)"
     [ngStyle]="{'order':list.order}"
-    *ngFor="let list of lists ">
+    *ngFor="let list of lists$ | async ">
     <app-task-header 
       [header]="list.name" 
-      (newTask) = "launchNewTaskDialog()"
-      (moveAll) = "launchCopyTaskDialog()"
-      (delList) = "launchComfirmDialog()"
-      (editList) = "launchEditListDialog()"
+      (newTask) = "launchNewTaskDialog(list.id)"
+      (moveAll) = "launchCopyTaskDialog(list.id)"
+      (delList) = "launchComfirmDialog(list)"
+      (editList) = "launchEditListDialog(list)"
       >
     </app-task-header>
-    <app-quick-task (quickTask)="handleQuickTask($event)"></app-quick-task>
+    <app-quick-task (quickTask)="handleQuickTask($event,list.id)"></app-quick-task>
     <app-task-item
       *ngFor="let task of list.tasks"
-      [item] = "task"
-      (taskClick) = "launchUpdateTaskDialog(task)"></app-task-item>
+      [item]="task"
+      (taskComplete)="handleCompleteTask(task)"
+      (taskClick) = "launchUpdateTaskDialog(task)"
+      ></app-task-item>
   </app-task-list>
 </div>
-<button md-fab type="button" (click) = "launchNewListDialog()" class="fab-button">
+<button md-fab type="button" (click) = "launchNewListDialog($event)" class="fab-button">
   <md-icon>add</md-icon>
 </button>

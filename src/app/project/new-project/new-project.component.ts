@@ -26,7 +26,7 @@ export class NewProjectComponent implements OnInit {
     if(this.data.project){
       this.form = this.fb.group({
         name:[this.data.project.name,Validators.required],
-        desc:[this.data.project.data],
+        desc:[this.data.project.desc],
         coverImg:[this.data.project.coverImg]
       });
       this.title = "Edit Project";
@@ -43,13 +43,12 @@ export class NewProjectComponent implements OnInit {
     // this.title = this.data.title;
   }
   onSubmit({value,valid}, env:Event){
-    console.log("message sent");
     env.preventDefault();
     if(!valid){
       return;
     }
    
-    this.mdDialogRef.close(value);
+    this.mdDialogRef.close({name: value.name, desc: value.desc ? value.desc : null, coverImg: value.coverImg});
     
   }
 }
