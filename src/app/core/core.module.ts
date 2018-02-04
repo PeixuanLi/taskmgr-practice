@@ -72,7 +72,8 @@ import 'rxjs/add/operator/do';
     {
       provide: 'BASE_CONFIG',
       useValue: {
-        url: 'http://localhost:3000'
+        url: 'https://taskmgr-monkeymonk.herokuapp.com'
+        // url: 'http://localhost:3000'
         // url: 'http://manage.t.imooc.io/apis',
       }
     }

@@ -5,19 +5,28 @@ import { Store } from '@ngrx/store';
 import * as fromRoot from '../../reducers';
 import { TaskService } from '../../services/task.service';
 import {CalendarEvent} from 'angular-calendar';
-
+import {addDays, addHours, endOfDay, endOfMonth, isSameDay, isSameMonth, startOfDay, subDays} from 'date-fns';
 @Component({
   selector: 'app-calendar-home',
   template: `
     <md-card>
       <div class="toolbar ">
-        <button md-icon-button mwlCalendarPreviousView>
+        <button 
+          md-icon-button mwlCalendarPreviousView
+          [view]="view$ | async"
+          [(viewDate)]="viewDate">>
           <md-icon class="md-48">chevron_left</md-icon>
         </button>
-        <button md-icon-button mwlCalendarToday>
+        <button 
+          md-button
+          mwlCalendarToday
+          [(viewDate)]="viewDate">>
           {{viewDate | date: 'MM-dd-yyyy'}}
         </button>
-        <button md-icon-button mwlCalendarNextView>
+        <button 
+          md-icon-button mwlCalendarNextView
+          [view]="view$ | async"
+          [(viewDate)]="viewDate">
           <md-icon class="md-48">chevron_right</md-icon>
         </button>
       </div>
@@ -58,6 +67,7 @@ import {CalendarEvent} from 'angular-calendar';
   `]
 })
 export class CalendarHomeComponent implements OnInit {
+  activeDayIsOpen = true;
   viewDate : Date;
   view$: Observable<string>;
   events$: Observable<CalendarEvent[]>;
@@ -74,6 +84,20 @@ export class CalendarHomeComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
+  handleEvent(action: string, event: CalendarEvent): void {
+    console.log('events handled');
+  }
+
+  dayClicked({date, events}: { date: Date, events: CalendarEvent[] }): void {
+    if (isSameMonth(date, this.viewDate)) {
+      if ((isSameDay(this.viewDate, date) && this.activeDayIsOpen === true) || events.length === 0) {
+        this.activeDayIsOpen = false;
+      } else {
+        this.activeDayIsOpen = true;
+        this.viewDate = date;
+      }
+    }
   }
 
 }

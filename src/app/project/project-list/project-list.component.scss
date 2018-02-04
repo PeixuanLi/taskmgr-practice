@@ -2,10 +2,14 @@
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    
+    position: relative;
+    height: 100%;
+    overflow: scroll;
 }
 .card {
-    height: 360px;
-    flex: 0 0 360px;
+    height: 365px;
+    flex: 0 0 365px;
     margin: 10px;
     display: flex;
 }

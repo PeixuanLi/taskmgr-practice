@@ -40,7 +40,7 @@ export class TaskListService{
         const url = `${this.config.url}/${this.domain}/${taskList.id}`;
         return this.http.delete(url).mapTo(taskList);
     }
-     //get
+     //get 
      get(projectId:string): Observable<TaskList[]>{
         const url = `${this.config.url}/${this.domain}`;
         return this.http
